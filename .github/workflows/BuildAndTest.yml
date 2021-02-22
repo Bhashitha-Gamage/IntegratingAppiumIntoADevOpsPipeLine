@@ -46,18 +46,14 @@ jobs:
     # - name: Build UWP App
     #  run: msbuild ${{env.Solution_Name}} /p:Configuration=Release /p:AppxBundlePlatforms="${{env.buildPlatform}}" /p:AppxPackageDir="${{ env.appxPackageDir }}" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload /p:PackageCertificateKeyFile=${{github.workspace}}\${{env.Wap_Project_Directory}}\${{env.signingcertificate}} /p:PackageCertificatePassword=${{secrets.PFX_PWD}}  /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=""
    
-   # - name: Build Android App
+    - name: Build Android App
       # run: msbuild ${{env.Solution_Name}} /p:Configuration=Release /p:AppxBundlePlatforms="${{env.buildPlatform}}" /p:AppxPackageDir="${{ env.appxPackageDir }}" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload /p:PackageCertificateKeyFile=${{github.workspace}}\${{env.Wap_Project_Directory}}\${{env.signingcertificate}} /p:PackageCertificatePassword=${{secrets.PFX_PWD}}  /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=""
-   #   run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Release
+      run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Release
       
     - name: Build Appium UITest project
       run: msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
       
-    - name: Run UI tests
-      run: |
-            nuget install NUnit.ConsoleRunner
-            mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
-     
+
       
    # - name: remove previous installs of app if exists
    #   run: |
@@ -81,7 +77,11 @@ jobs:
       
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
-   
+    - name: Run UI tests
+      run: |
+            nuget install NUnit.ConsoleRunner
+            mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
+     
    # - name: Run UI tests
    #   run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
    
