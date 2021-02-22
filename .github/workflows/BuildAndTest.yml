@@ -31,14 +31,14 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Setup MSBuild Path
-      uses: warrenbuckley/Setup-MSBuild@v1
+   # - name: Setup MSBuild Path
+   #   uses: warrenbuckley/Setup-MSBuild@v1
   
-    - name: Setup VSTest.console.exe
-      uses: darenm/Setup-VSTest@v1
+   # - name: Setup VSTest.console.exe
+   #   uses: darenm/Setup-VSTest@v1
             
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
+   # - name: Setup NuGet
+   #   uses: NuGet/setup-nuget@v1.0.2
 
     - name: Restore NuGet Packages
       run: nuget restore ${{env.Solution_Name}}
@@ -49,6 +49,13 @@ jobs:
     - name: Build Android App
       # run: msbuild ${{env.Solution_Name}} /p:Configuration=Release /p:AppxBundlePlatforms="${{env.buildPlatform}}" /p:AppxPackageDir="${{ env.appxPackageDir }}" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload /p:PackageCertificateKeyFile=${{github.workspace}}\${{env.Wap_Project_Directory}}\${{env.signingcertificate}} /p:PackageCertificatePassword=${{secrets.PFX_PWD}}  /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=""
       run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Release
+      
+    - name: Build Appium UITest project
+      run: msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
+      
+    - name: Run UI tests
+      run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
+     
       
    # - name: remove previous installs of app if exists
    #   run: |
@@ -70,8 +77,12 @@ jobs:
     - name: Run Appium Doctor
       run: appium-doctor --android
       
-    - name: Run UI tests
-      run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
+   # - name: Run UI tests
+   #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
+   
+   # - name: Run UI tests
+   #   run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
+   
    
     - name: Upload Artifact
       uses: actions/upload-artifact@v1.0.0
