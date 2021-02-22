@@ -56,7 +56,7 @@ jobs:
     - name: Run UI tests
       run: |
             nuget install NUnit.ConsoleRunner
-            mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
+            mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
      
       
    # - name: remove previous installs of app if exists
