@@ -229,9 +229,11 @@ namespace CarvedRock.UITests
             _appiumLocalService.Start(); ;
             var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities);
 
+            System.Diagnostics.Debug.WriteLine("Sample Comment");
+
             return driver;
 
-
+             
         }
     }
 }
