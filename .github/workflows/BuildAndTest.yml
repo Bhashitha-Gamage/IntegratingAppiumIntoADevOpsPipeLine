@@ -48,7 +48,7 @@ jobs:
    
     - name: Build Android App
       # run: msbuild ${{env.Solution_Name}} /p:Configuration=Release /p:AppxBundlePlatforms="${{env.buildPlatform}}" /p:AppxPackageDir="${{ env.appxPackageDir }}" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload /p:PackageCertificateKeyFile=${{github.workspace}}\${{env.Wap_Project_Directory}}\${{env.signingcertificate}} /p:PackageCertificatePassword=${{secrets.PFX_PWD}}  /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=""
-      run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Release
+      run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Release /t:SignAndroidPackage
       
     - name: Build Appium UITest project
       run: msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
