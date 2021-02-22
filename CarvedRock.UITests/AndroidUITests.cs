@@ -214,7 +214,7 @@ namespace CarvedRock.UITests
 
 
             //var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
-            var packagePath = Path.Combine(currentPath, @"../../../../CarvedRock.Android/bin/Release/com.fluentbytes.carvedrock.apk");
+            var packagePath = Path.Combine(currentPath, @"../../../../../CarvedRock.Android/bin/Release/com.fluentbytes.carvedrock.apk");
             packagePath = Path.GetFullPath(packagePath);
             Console.WriteLine($"Package path: {packagePath}");
 
