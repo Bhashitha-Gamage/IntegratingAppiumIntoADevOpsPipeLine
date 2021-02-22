@@ -53,6 +53,10 @@ jobs:
     - name: Build Appium UITest project
       run: msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
       
+    - name: Run UI tests
+      run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
+     
+      
    # - name: remove previous installs of app if exists
    #   run: |
    #         $package =Get-AppxPackageManifest -Package "8b831c56-bc54-4a8b-af94-a448f80118e7_1.0.0.0_x64__9etdvjwkeybm6"
@@ -76,8 +80,8 @@ jobs:
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
    
-    - name: Run UI tests
-      run: nunit-console /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
+   # - name: Run UI tests
+   #   run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
    
    
     - name: Upload Artifact
