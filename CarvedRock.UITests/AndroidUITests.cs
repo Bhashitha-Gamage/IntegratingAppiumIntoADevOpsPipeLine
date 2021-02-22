@@ -192,14 +192,16 @@ namespace CarvedRock.UITests
             //System.Environment.SetEnvironmentVariable("JAVA_HOME", @"C:\Program Files\Android\jdk\microsoft_dist_openjdk_1.8.0.25");
 
 
-            System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"/Users/bhashithagamage/Library/Developer/Xamarin/android-sdk-macosx");
-            System.Environment.SetEnvironmentVariable("JAVA_HOME", @"/Library/Java/JavaVirtualMachines/openjdk-11.0.1.jdk/Contents/Home");
+           // System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"/Users/bhashithagamage/Library/Developer/Xamarin/android-sdk-macosx");
+           // System.Environment.SetEnvironmentVariable("JAVA_HOME", @"/Library/Java/JavaVirtualMachines/openjdk-11.0.1.jdk/Contents/Home");
 
 
             var capabilities = new AppiumOptions();
             // automatic start of the emulator if not running
             // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
-            capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
+            // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
+            capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "emulator");
+
             capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
             capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
             
