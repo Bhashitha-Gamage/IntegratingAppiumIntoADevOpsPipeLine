@@ -77,10 +77,15 @@ jobs:
       
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
+    
+   # - name: Start Appium Server
+   #   run: appium
+      
     - name: Run UI tests
-      run: |
-            nuget install NUnit.ConsoleRunner
-            mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
+      run: dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
+     # run: |
+     #       nuget install NUnit.ConsoleRunner
+     #       mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
      
    # - name: Run UI tests
    #   run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
