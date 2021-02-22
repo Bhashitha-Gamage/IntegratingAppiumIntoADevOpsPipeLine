@@ -211,7 +211,8 @@ namespace CarvedRock.UITests
             var currentPath = Directory.GetCurrentDirectory();
             Console.WriteLine($"Current path: {currentPath}");
             // var packagePath = Path.Combine(currentPath, @"..\..\..\AppsToTest\com.fluentbytes.carvedrock-x86.apk");
-            var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+            //var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+            var packagePath = Path.Combine(currentPath, @"CarvedRock.Android/bin/Release/com.fluentbytes.carvedrock.apk");
             packagePath = Path.GetFullPath(packagePath);
             Console.WriteLine($"Package path: {packagePath}");
             capabilities.AddAdditionalCapability(MobileCapabilityType.App, packagePath);
