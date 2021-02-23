@@ -237,7 +237,7 @@ namespace CarvedRock.UITests
             serveroptions.AddArguments( relaxedSecurityOption);
             var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
             _appiumLocalService.Start(); ;
-            var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities);
+            var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(4));
 
             return driver;
 
