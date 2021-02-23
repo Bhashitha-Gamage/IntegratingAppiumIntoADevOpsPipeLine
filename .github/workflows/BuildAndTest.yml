@@ -48,11 +48,17 @@ jobs:
    
    # - name: Create AVD
    #   run: /Users/runner/Library/Android/sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-28;google_apis;x86"
-    - name: Create Emulator
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 29
-        script: ./gradlew connectedCheck
+    
+    - name: Experiment with create android emulator
+      run: |
+            echo no | $ANDROID_HOME/tools/android create avd --force -n test -t android-28 --abi default/armeabi-v7a
+            $ANDROID_HOME/tools/android list avd
+    
+   # - name: Create Emulator
+   #   uses: reactivecircus/android-emulator-runner@v2
+   #   with:
+   #     api-level: 29
+   #     script: ./gradlew connectedCheck
         
     - name: Get AVD List
       run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
