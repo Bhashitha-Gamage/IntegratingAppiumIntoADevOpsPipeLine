@@ -84,19 +84,18 @@ jobs:
    # - name: Install UWP App
    #   run: powershell CarvedRock\CarvedRock.UWP\${{env.appxPackageDir}}\CarvedRock.UWP_1.0.0.0_Test\Install.ps1 -Force
       
-   # - name: Innstalling appium
-   #   # uses: actions/setup-node@v1
-   #   run: npm install -g appium
+    - name: Innstalling appium
+      # uses: actions/setup-node@v1
+      run: npm install -g appium
       
-   # - name: install Appium Doctor
-   #   uses: actions/setup-node@v1
-   # - run: npm install -g appium-doctor
+    - name: install Appium Doctor
+    - run: npm install -g appium-doctor
     
    # - name: Run Appium Doctor
    #   run: appium-doctor --android
       
-    - name: Install and Run Appium Server
-      uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
+   # This is only support for Linux containers - name: Install and Run Appium Server
+   #   uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
       
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
