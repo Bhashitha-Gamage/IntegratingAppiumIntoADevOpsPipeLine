@@ -89,10 +89,10 @@ jobs:
       run: npm install -g appium
       
     - name: install Appium Doctor
-    - run: npm install -g appium-doctor
+      run: npm install -g appium-doctor
     
-   # - name: Run Appium Doctor
-   #   run: appium-doctor --android
+    - name: Run Appium Doctor
+      run: appium-doctor --android
       
    # This is only support for Linux containers - name: Install and Run Appium Server
    #   uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
