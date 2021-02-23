@@ -49,7 +49,7 @@ jobs:
    # - name: Create AVD
    #   run: /Users/runner/Library/Android/sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-28;google_apis;x86"
     
-    - name: Experiment with create android emulator
+    - name: Experiment with create Android Emulator
       run: |
             $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86"
             $ANDROID_HOME/tools/bin/sdkmanager --licenses
