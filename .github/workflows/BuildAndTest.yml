@@ -40,14 +40,14 @@ jobs:
    # - name: Setup NuGet
    #   uses: NuGet/setup-nuget@v1.0.2
 
-    - name: Experiment with create Android Emulatorr
-      run: |
-            $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86"
-            $ANDROID_HOME/tools/bin/sdkmanager --licenses
-            echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test_emulator -k "system-images;android-29;google_apis;x86"
-            $ANDROID_HOME/tools/android list avd
-            $ANDROID_HOME/emulator/emulator -avd test_emulator -no-snapshot -no-boot-anim &
-            $ANDROID_HOME/platform-tools/adb wait-for-device
+   # - name: Experiment with create Android Emulatorr
+   #   run: |
+   #         $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86"
+   #         $ANDROID_HOME/tools/bin/sdkmanager --licenses
+   #         echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test_emulator -k "system-images;android-29;google_apis;x86"
+   #         $ANDROID_HOME/tools/android list avd
+   #         $ANDROID_HOME/emulator/emulator -avd test_emulator -no-snapshot -no-boot-anim &
+   #         $ANDROID_HOME/platform-tools/adb wait-for-device
 
     - name: Restore NuGet Packages
       run: nuget restore ${{env.Solution_Name}}
@@ -60,11 +60,19 @@ jobs:
     
 
     
-   # - name: Create Emulator
-   #   uses: reactivecircus/android-emulator-runner@v2
-   #   with:
-   #     api-level: 29
-   #     script: ./gradlew connectedCheck
+    - name: Create Emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        name: test_emulator
+        script: |
+                 /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
+                 msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug /t:SignAndroidPackage
+                 msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
+                 npm install -g appium
+                 npm install -g appium-doctor
+                 appium-doctor --android
+                 dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
         
     - name: Get AVD List
       run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
