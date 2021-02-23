@@ -64,7 +64,7 @@ jobs:
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: 29
-        name: test_emulator
+        avd-name: test_emulator
         script: |
                  /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
                  msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug /t:SignAndroidPackage
