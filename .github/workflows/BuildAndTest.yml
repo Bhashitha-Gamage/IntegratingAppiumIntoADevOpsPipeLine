@@ -65,6 +65,8 @@ jobs:
       with:
         api-level: 29
         avd-name: test_emulator
+        profile: Nexus 6
+        emulator-options: -no-snapshot -noaudio -no-boot-anim
         script: |
                  /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
                  msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug /t:SignAndroidPackage
