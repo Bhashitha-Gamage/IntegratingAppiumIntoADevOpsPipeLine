@@ -226,6 +226,10 @@ namespace CarvedRock.UITests
             capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
             // additional wait time in case we have a clean emulator and need to wait for the install
             capabilities.AddAdditionalCapability("appWaitDuration",4800000);
+
+            // Incresing adbExecTimeout
+            capabilities.AddAdditionalCapability("adbExecTimeout", 4800000);
+
             // specify startup flags appium server to execute adb shell commands
             var serveroptions = new OptionCollector();
             var relaxedSecurityOption = new KeyValuePair<string, string>("--relaxed-security", "");
