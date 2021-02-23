@@ -84,9 +84,9 @@ jobs:
    # - name: Install UWP App
    #   run: powershell CarvedRock\CarvedRock.UWP\${{env.appxPackageDir}}\CarvedRock.UWP_1.0.0.0_Test\Install.ps1 -Force
       
-    - name: install appium
-      uses: actions/setup-node@v1
-    - run: npm install -g appium
+    - name: Innstalling appium
+      # uses: actions/setup-node@v1
+      run: npm install -g appium
       
     - name: install Appium Doctor
       uses: actions/setup-node@v1
