@@ -40,6 +40,15 @@ jobs:
    # - name: Setup NuGet
    #   uses: NuGet/setup-nuget@v1.0.2
 
+    - name: Experiment with create Android Emulator
+      run: |
+            $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86"
+            $ANDROID_HOME/tools/bin/sdkmanager --licenses
+            echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test_emulator -k "system-images;android-29;google_apis;x86"
+            $ANDROID_HOME/tools/android list avd
+            $ANDROID_HOME/emulator/emulator -avd test_emulator -no-snapshot -no-boot-anim &
+            $ANDROID_HOME/platform-tools/adb wait-for-device
+
     - name: Restore NuGet Packages
       run: nuget restore ${{env.Solution_Name}}
             
@@ -49,12 +58,7 @@ jobs:
    # - name: Create AVD
    #   run: /Users/runner/Library/Android/sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-28;google_apis;x86"
     
-    - name: Experiment with create Android Emulator
-      run: |
-            $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86"
-            $ANDROID_HOME/tools/bin/sdkmanager --licenses
-            echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test_emulator -k "system-images;android-29;google_apis;x86"
-            $ANDROID_HOME/tools/android list avd
+
     
    # - name: Create Emulator
    #   uses: reactivecircus/android-emulator-runner@v2
