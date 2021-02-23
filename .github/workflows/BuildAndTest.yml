@@ -51,7 +51,7 @@ jobs:
     
     - name: Experiment with create android emulator
       run: |
-            echo no | $ANDROID_HOME/tools/android create avd --force -n test -t android-28 --abi default/armeabi-v7a
+            echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test -k "system-images;android-29;google_apis;x86"
             $ANDROID_HOME/tools/android list avd
     
    # - name: Create Emulator
