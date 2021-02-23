@@ -49,11 +49,11 @@ jobs:
    # - name: Create AVD
    #   run: /Users/runner/Library/Android/sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-28;google_apis;x86"
     
-    - name: Experiment with create android emulator
+    - name: Experiment with create Android Emulator
       run: |
             $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;google_apis;x86"
             $ANDROID_HOME/tools/bin/sdkmanager --licenses
-            echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test -k "system-images;android-29;google_apis;x86"
+            echo no | $ANDROID_HOME/tools/bin/avdmanager create avd --force -n test_emulator -k "system-images;android-29;google_apis;x86"
             $ANDROID_HOME/tools/android list avd
     
    # - name: Create Emulator
@@ -84,9 +84,9 @@ jobs:
    # - name: Install UWP App
    #   run: powershell CarvedRock\CarvedRock.UWP\${{env.appxPackageDir}}\CarvedRock.UWP_1.0.0.0_Test\Install.ps1 -Force
       
-    - name: install appium
-      uses: actions/setup-node@v1
-    - run: npm install -g appium
+    - name: Innstalling appium
+      # uses: actions/setup-node@v1
+      run: npm install -g appium
       
     - name: install Appium Doctor
       uses: actions/setup-node@v1
@@ -94,6 +94,9 @@ jobs:
     
     - name: Run Appium Doctor
       run: appium-doctor --android
+      
+    - name: Appium mac driver
+      run : npm install appium-mac-driver
       
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
