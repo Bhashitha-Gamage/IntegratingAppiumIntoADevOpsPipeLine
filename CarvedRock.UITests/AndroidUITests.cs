@@ -188,63 +188,132 @@ namespace CarvedRock.UITests
 
         private AndroidDriver<AppiumWebElement> StartApp()
         {
-            //System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"C:\Program Files (x86)\Android\android-sdk");
-            //System.Environment.SetEnvironmentVariable("JAVA_HOME", @"C:\Program Files\Android\jdk\microsoft_dist_openjdk_1.8.0.25");
+            bool runInLocalMachine = false;
+
+            if (!runInLocalMachine)
+            {
+
+                //System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"C:\Program Files (x86)\Android\android-sdk");
+                //System.Environment.SetEnvironmentVariable("JAVA_HOME", @"C:\Program Files\Android\jdk\microsoft_dist_openjdk_1.8.0.25");
 
 
-           // System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"/Users/bhashithagamage/Library/Developer/Xamarin/android-sdk-macosx");
-           // System.Environment.SetEnvironmentVariable("JAVA_HOME", @"/Library/Java/JavaVirtualMachines/openjdk-11.0.1.jdk/Contents/Home");
+                // System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"/Users/bhashithagamage/Library/Developer/Xamarin/android-sdk-macosx");
+                // System.Environment.SetEnvironmentVariable("JAVA_HOME", @"/Library/Java/JavaVirtualMachines/openjdk-11.0.1.jdk/Contents/Home");
 
 
-            var capabilities = new AppiumOptions();
-            // automatic start of the emulator if not running
-            // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
-            // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
-            capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_emulator");
+                var capabilities = new AppiumOptions();
+                // automatic start of the emulator if not running
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
+                capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_emulator");
 
-            capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
-            capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
-            
-
-            // connecting to a device or emulator
-            capabilities.AddAdditionalCapability(MobileCapabilityType.DeviceName, "emulator-5554");
-            capabilities.AddAdditionalCapability(MobileCapabilityType.AutomationName, "UiAutomator2");
-            // specifyig which app we want to install and launch
-            var currentPath = Directory.GetCurrentDirectory();
-            Console.WriteLine($"Current path: {currentPath}");
-            // var packagePath = Path.Combine(currentPath, @"..\..\..\AppsToTest\com.fluentbytes.carvedrock-x86.apk");
+                capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
 
 
-            //var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
-            var packagePath = Path.Combine(currentPath, @"../../../../CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
-            packagePath = Path.GetFullPath(packagePath);
-            Console.WriteLine($"Package path: {packagePath}");
+                // connecting to a device or emulator
+                capabilities.AddAdditionalCapability(MobileCapabilityType.DeviceName, "emulator-5554");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.AutomationName, "UiAutomator2");
+                // specifyig which app we want to install and launch
+                var currentPath = Directory.GetCurrentDirectory();
+                Console.WriteLine($"Current path: {currentPath}");
+                // var packagePath = Path.Combine(currentPath, @"..\..\..\AppsToTest\com.fluentbytes.carvedrock-x86.apk");
 
-            capabilities.AddAdditionalCapability(MobileCapabilityType.App, packagePath);
 
-            // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.fluentbytes.carvedrock");
-            // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
+                //var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+                var packagePath = Path.Combine(currentPath, @"../../../../CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+                packagePath = Path.GetFullPath(packagePath);
+                Console.WriteLine($"Package path: {packagePath}");
 
-            capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.main");
-           // capabilities.AddAdditionalCapability("appWaitActivity", ".activities.MainActivity");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.App, packagePath);
 
-            // additional wait time in case we have a clean emulator and need to wait for the install
-            capabilities.AddAdditionalCapability("appWaitDuration",4800000);
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.fluentbytes.carvedrock");
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
 
-            // Incresing adbExecTimeout
-            capabilities.AddAdditionalCapability("adbExecTimeout", 4800000);
+                capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.main");
+                // capabilities.AddAdditionalCapability("appWaitActivity", ".activities.MainActivity");
 
-            // specify startup flags appium server to execute adb shell commands
-            var serveroptions = new OptionCollector();
-            var relaxedSecurityOption = new KeyValuePair<string, string>("--relaxed-security", "");
+                // additional wait time in case we have a clean emulator and need to wait for the install
+                capabilities.AddAdditionalCapability("appWaitDuration", 4800000);
 
-            serveroptions.AddArguments( relaxedSecurityOption);
-            var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
-            _appiumLocalService.Start(); ;
-            var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(4));
+                // Incresing adbExecTimeout
+                capabilities.AddAdditionalCapability("adbExecTimeout", 4800000);
 
-            return driver;
+                // specify startup flags appium server to execute adb shell commands
+                var serveroptions = new OptionCollector();
+                var relaxedSecurityOption = new KeyValuePair<string, string>("--relaxed-security", "");
 
+                serveroptions.AddArguments(relaxedSecurityOption);
+                // var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
+                var _appiumLocalService = new AppiumServiceBuilder().WithArguments(serveroptions).Build();
+
+                _appiumLocalService.Start(); ;
+                var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
+
+                return driver;
+            }
+            else
+            {
+
+                //System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"C:\Program Files (x86)\Android\android-sdk");
+                //System.Environment.SetEnvironmentVariable("JAVA_HOME", @"C:\Program Files\Android\jdk\microsoft_dist_openjdk_1.8.0.25");
+
+
+                System.Environment.SetEnvironmentVariable("ANDROID_HOME", @"/Users/bhashithagamage/Library/Developer/Xamarin/android-sdk-macosx");
+                //System.Environment.SetEnvironmentVariable("JAVA_HOME", @"/Library/Java/JavaVirtualMachines/openjdk-11.0.1.jdk/Contents/Home");
+                System.Environment.SetEnvironmentVariable("JAVA_HOME", @"/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home");
+
+
+                var capabilities = new AppiumOptions();
+                // automatic start of the emulator if not running
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
+                //capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
+                capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_emulator");
+
+                capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
+
+
+                // connecting to a device or emulator
+                capabilities.AddAdditionalCapability(MobileCapabilityType.DeviceName, "emulator-5554");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.AutomationName, "UiAutomator2");
+                // specifyig which app we want to install and launch
+                var currentPath = Directory.GetCurrentDirectory();
+                Console.WriteLine($"Current path: {currentPath}");
+                // var packagePath = Path.Combine(currentPath, @"..\..\..\AppsToTest\com.fluentbytes.carvedrock-x86.apk");
+
+
+                //var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+                var packagePath = Path.Combine(currentPath, @"../../../../CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+                packagePath = Path.GetFullPath(packagePath);
+                Console.WriteLine($"Package path: {packagePath}");
+
+                capabilities.AddAdditionalCapability(MobileCapabilityType.App, packagePath);
+
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.fluentbytes.carvedrock");
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
+
+                capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.main");
+                // capabilities.AddAdditionalCapability("appWaitActivity", ".activities.MainActivity");
+
+                // additional wait time in case we have a clean emulator and need to wait for the install
+                capabilities.AddAdditionalCapability("appWaitDuration", 4800000);
+
+                // Incresing adbExecTimeout
+                capabilities.AddAdditionalCapability("adbExecTimeout", 4800000);
+
+                // specify startup flags appium server to execute adb shell commands
+                var serveroptions = new OptionCollector();
+                var relaxedSecurityOption = new KeyValuePair<string, string>("--relaxed-security", "");
+
+                serveroptions.AddArguments(relaxedSecurityOption);
+                //var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
+                var _appiumLocalService = new AppiumServiceBuilder().WithArguments(serveroptions).Build();
+                _appiumLocalService.Start(); ;
+                var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
+
+                return driver;
+            }
 
         }
     }
