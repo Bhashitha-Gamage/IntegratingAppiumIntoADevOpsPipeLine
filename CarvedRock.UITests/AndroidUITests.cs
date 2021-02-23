@@ -200,7 +200,7 @@ namespace CarvedRock.UITests
             // automatic start of the emulator if not running
             // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
             // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
-            capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "emulator");
+            capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_emulator");
 
             capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
             capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
