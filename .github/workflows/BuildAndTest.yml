@@ -95,6 +95,9 @@ jobs:
     - name: Run Appium Doctor
       run: appium-doctor --android
       
+    - name: Appium mac driver
+      run : npm install appium-mac-driver
+      
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
     
