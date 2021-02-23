@@ -84,19 +84,19 @@ jobs:
    # - name: Install UWP App
    #   run: powershell CarvedRock\CarvedRock.UWP\${{env.appxPackageDir}}\CarvedRock.UWP_1.0.0.0_Test\Install.ps1 -Force
       
-    - name: Innstalling appium
-      # uses: actions/setup-node@v1
-      run: npm install -g appium
+   # - name: Innstalling appium
+   #   # uses: actions/setup-node@v1
+   #   run: npm install -g appium
       
-    - name: install Appium Doctor
-      uses: actions/setup-node@v1
-    - run: npm install -g appium-doctor
+   # - name: install Appium Doctor
+   #   uses: actions/setup-node@v1
+   # - run: npm install -g appium-doctor
     
-    - name: Run Appium Doctor
-      run: appium-doctor --android
+   # - name: Run Appium Doctor
+   #   run: appium-doctor --android
       
-    - name: Appium mac driver
-      run : npm install appium-mac-driver
+    - name: Install and Run Appium Server
+      uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
       
    # - name: Run UI tests
    #   run: vstest.console.exe /Platform:x64  /Tests:CarvedRock.UITests.WindowsUWPTests.CheckMasterDetailAndBack,CarvedRock.UITests.WindowsUWPTests.AddNewItem,CarvedRock.UITests.AndroidUITests.CheckMasterDetailAndBack,CarvedRock.UITests.AndroidUITests.AddNewItem "CarvedRock\CarvedRock.UITests\bin\Release\netcoreapp3.1\CarvedRock.UITests.dll" /Logger:"trx"
@@ -114,17 +114,17 @@ jobs:
    #   run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
    
    
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: published App Package
-        path: CarvedRock\CarvedRock.UWP\${{env.appxPackageDir}}
-      if: always()
+  #  - name: Upload Artifact
+  #    uses: actions/upload-artifact@v1.0.0
+  #    with:
+  #      name: published App Package
+  #      path: CarvedRock\CarvedRock.UWP\${{env.appxPackageDir}}
+  #    if: always()
 
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: published Test Results UI test
-        path: TestResults        
-      if: always()
+   # - name: Upload Test Results
+   #   uses: actions/upload-artifact@v1.0.0
+   #   with:
+   #     name: published Test Results UI test
+   #     path: TestResults        
+   #   if: always()
   
