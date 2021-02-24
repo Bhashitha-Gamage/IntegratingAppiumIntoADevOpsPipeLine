@@ -35,74 +35,74 @@ namespace CarvedRock.UITests
             _appiumLocalService = null;
         }
 
+        [TestMethod]
+        public void TestListInstalledPackages()
+        {
+            AndroidDriver<AppiumWebElement> driver = StartApp();
+            //get a list of all installed packages on the device
+            string script = "mobile: shell";
+            var arguments = new Dictionary<string, string>
+            {
+                { "command", "pm list packages" },
+                { "--show-versioncode", "" }
+            };
+
+            var list = driver.ExecuteScript(script, arguments);
+            Assert.IsNotNull(list);
+            Console.Write(list);
+        }
+
+
         //[TestMethod]
-        //public void TestListInstalledPackages()
+        //public void CheckMasterDetailAndBack()
         //{
         //    AndroidDriver<AppiumWebElement> driver = StartApp();
-        //    //get a list of all installed packages on the device
-        //    string script = "mobile: shell";
-        //    var arguments = new Dictionary<string, string>
-        //    {
-        //        { "command", "pm list packages" },
-        //        { "--show-versioncode", "" }
-        //    };
 
-        //    var list = driver.ExecuteScript(script,arguments);
-        //    Assert.IsNotNull(list);
-        //    Console.Write(list);
+        //    // Test by adding wait time
+        //    Thread.Sleep(10000);
+        //    CreateScreenshot(driver);
+
+
+        //    // tap on second item
+        //    var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
+        //    el1.Click();
+
+        //    // Test by adding wait time
+        //    Thread.Sleep(10000);
+        //    CreateScreenshot(driver);
+
+        //    var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
+        //    Assert.IsTrue(el2.Text == "Second item");
+
+        //    // Test by adding wait time
+        //    Thread.Sleep(10000);
+        //    CreateScreenshot(driver);
+
+        //    driver.PressKeyCode(AndroidKeyCode.Back);
+
+        //    // Test by adding wait time
+        //    Thread.Sleep(10000);
+        //    CreateScreenshot(driver);
+
+        //    var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
+        //    Assert.IsTrue(el3 != null);
+
+        //    driver.CloseApp();
+
         //}
 
+        //[TestMethod]
+        //public void JustAScreenShot()
+        //{
+        //    AndroidDriver<AppiumWebElement> driver = StartApp();
 
-        [TestMethod]
-        public void CheckMasterDetailAndBack()
-        {
-            AndroidDriver<AppiumWebElement> driver = StartApp();
+        //    // Test by adding wait time
+        //    Thread.Sleep(10000);
 
-            // Test by adding wait time
-            Thread.Sleep(10000);
-            CreateScreenshot(driver);
+        //    CreateScreenshot(driver);
 
-
-            // tap on second item
-            var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
-            el1.Click();
-
-            // Test by adding wait time
-            Thread.Sleep(10000);
-            CreateScreenshot(driver);
-
-            var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
-            Assert.IsTrue(el2.Text == "Second item");
-
-            // Test by adding wait time
-            Thread.Sleep(10000);
-            CreateScreenshot(driver);
-
-            driver.PressKeyCode(AndroidKeyCode.Back);
-
-            // Test by adding wait time
-            Thread.Sleep(10000);
-            CreateScreenshot(driver);
-
-            var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
-            Assert.IsTrue(el3 != null);
-
-            driver.CloseApp();
-
-        }
-
-        [TestMethod]
-        public void JustAScreenShot()
-        {
-            AndroidDriver<AppiumWebElement> driver = StartApp();
-
-            // Test by adding wait time
-            Thread.Sleep(10000);
-
-            CreateScreenshot(driver);
-
-            driver.CloseApp();
-        }
+        //    driver.CloseApp();
+        //}
 
         [TestMethod]
         public void AddNewItem()
