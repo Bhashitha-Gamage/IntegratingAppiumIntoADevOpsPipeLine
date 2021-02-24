@@ -100,6 +100,8 @@ namespace CarvedRock.UITests
             Thread.Sleep(10000);
 
             CreateScreenshot(driver);
+
+            driver.CloseApp();
         }
 
         [TestMethod]
