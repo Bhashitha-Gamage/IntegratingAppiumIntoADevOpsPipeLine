@@ -69,7 +69,7 @@ jobs:
         api-level: 29
         avd-name: test_emulator
         profile: Nexus 6
-        emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -skin 500x833
+        emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
         # emulator-options: -no-snapshot -noaudio -no-boot-anim
         script: |
                  /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
@@ -78,7 +78,7 @@ jobs:
                  # npm install -g appium
                  # npm install -g appium-doctor
                  # appium-doctor --android
-                 dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll --logger "trx;logfilename=mytests.trx" --results-directory ./TestResults
+                 dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll --logger "trx;logfilename=mytests.trx"
                  #- name: Upload Test Results
                  #  uses: actions/upload-artifact@v1.0.0
                  #  with:
