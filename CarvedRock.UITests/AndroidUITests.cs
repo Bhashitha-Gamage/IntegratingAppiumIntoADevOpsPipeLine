@@ -205,6 +205,16 @@ namespace CarvedRock.UITests
                 // automatic start of the emulator if not running
                 // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
                 // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
+
+                // Capabilities from jedoxAPP
+                capabilities.AddAdditionalCapability(MobileCapabilityType.BrowserName, "");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "10");
+
+
+
+
+
                 capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_emulator");
 
                 capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
