@@ -90,12 +90,11 @@ jobs:
       run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
       # run: emulator -list-avds
       
-    - name: Build Android App
-      # run: msbuild ${{env.Solution_Name}} /p:Configuration=Release /p:AppxBundlePlatforms="${{env.buildPlatform}}" /p:AppxPackageDir="${{ env.appxPackageDir }}" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload /p:PackageCertificateKeyFile=${{github.workspace}}\${{env.Wap_Project_Directory}}\${{env.signingcertificate}} /p:PackageCertificatePassword=${{secrets.PFX_PWD}}  /p:AppxPackageSigningEnabled=true /p:PackageCertificateThumbprint=""
-      run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug /t:SignAndroidPackage
+  #  - name: Build Android App
+  #    run: msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug /t:SignAndroidPackage
       
-    - name: Build Appium UITest project
-      run: msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
+   # - name: Build Appium UITest project
+   #   run: msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
       
 
       
@@ -127,15 +126,9 @@ jobs:
    # - name: Start Appium Server
    #   run: appium
       
-    - name: Run UI tests
-      run: dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
-     # run: |
-     #       nuget install NUnit.ConsoleRunner
-     #       mono  NUnit.ConsoleRunner.3.12.0/tools/nunit3-console.exe CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
-     
    # - name: Run UI tests
-   #   run: mono packages/NUnit.ConsoleRunner.3.11.1/tools/nunit3-console.exe /CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests
-   
+   #   run: dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
+
    
   #  - name: Upload Artifact
   #    uses: actions/upload-artifact@v1.0.0
