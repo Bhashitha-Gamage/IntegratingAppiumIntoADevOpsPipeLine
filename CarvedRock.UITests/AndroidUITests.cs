@@ -53,43 +53,43 @@ namespace CarvedRock.UITests
         }
 
 
-        //[TestMethod]
-        //public void CheckMasterDetailAndBack()
-        //{
-        //    AndroidDriver<AppiumWebElement> driver = StartApp();
+        [TestMethod]
+        public void CheckMasterDetailAndBack()
+        {
+            AndroidDriver<AppiumWebElement> driver = StartApp();
 
-        //    // Test by adding wait time
-        //    Thread.Sleep(10000);
-        //    CreateScreenshot(driver);
+            // Test by adding wait time
+            //Thread.Sleep(10000);
+            //CreateScreenshot(driver);
 
 
-        //    // tap on second item
-        //    var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
-        //    el1.Click();
+            // tap on second item
+            var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
+            el1.Click();
 
-        //    // Test by adding wait time
-        //    Thread.Sleep(10000);
-        //    CreateScreenshot(driver);
+            // Test by adding wait time
+            //Thread.Sleep(10000);
+            //CreateScreenshot(driver);
 
-        //    var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
-        //    Assert.IsTrue(el2.Text == "Second item");
+            var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
+            Assert.IsTrue(el2.Text == "Second item");
 
-        //    // Test by adding wait time
-        //    Thread.Sleep(10000);
-        //    CreateScreenshot(driver);
+            // Test by adding wait time
+            //Thread.Sleep(10000);
+            //CreateScreenshot(driver);
 
-        //    driver.PressKeyCode(AndroidKeyCode.Back);
+            driver.PressKeyCode(AndroidKeyCode.Back);
 
-        //    // Test by adding wait time
-        //    Thread.Sleep(10000);
-        //    CreateScreenshot(driver);
+            // Test by adding wait time
+            //Thread.Sleep(10000);
+            //CreateScreenshot(driver);
 
-        //    var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
-        //    Assert.IsTrue(el3 != null);
+            var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
+            Assert.IsTrue(el3 != null);
 
-        //    driver.CloseApp();
+            driver.CloseApp();
 
-        //}
+        }
 
         //[TestMethod]
         //public void JustAScreenShot()
