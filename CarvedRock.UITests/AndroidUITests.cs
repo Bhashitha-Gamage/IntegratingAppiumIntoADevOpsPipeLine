@@ -60,6 +60,8 @@ namespace CarvedRock.UITests
 
             // Test by adding wait time
             Thread.Sleep(10000);
+            CreateScreenshot(driver);
+
 
             // tap on second item
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
@@ -67,17 +69,20 @@ namespace CarvedRock.UITests
 
             // Test by adding wait time
             Thread.Sleep(10000);
+            CreateScreenshot(driver);
 
             var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             Assert.IsTrue(el2.Text == "Second item");
 
             // Test by adding wait time
             Thread.Sleep(10000);
+            CreateScreenshot(driver);
 
             driver.PressKeyCode(AndroidKeyCode.Back);
 
             // Test by adding wait time
             Thread.Sleep(10000);
+            CreateScreenshot(driver);
 
             var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
             Assert.IsTrue(el3 != null);
