@@ -107,9 +107,15 @@ namespace CarvedRock.UITests
         {
             AndroidDriver<AppiumWebElement> driver = StartApp();
 
+            // Test by adding wait time
+            Thread.Sleep(10000);
+
             // tap on second item
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Add"));
             el1.Click();
+
+            // Test by adding wait time
+            Thread.Sleep(10000);
 
             var elItemText = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             elItemText.Clear();
