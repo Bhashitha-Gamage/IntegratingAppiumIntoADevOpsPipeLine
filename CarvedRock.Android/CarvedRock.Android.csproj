@@ -32,6 +32,8 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
 <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+<AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+<AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

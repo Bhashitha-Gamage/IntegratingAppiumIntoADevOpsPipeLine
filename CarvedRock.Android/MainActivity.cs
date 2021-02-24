@@ -9,8 +9,9 @@ using Android.OS;
 
 namespace CarvedRock.Droid
 {
-    
-    [Activity(Name = "com.fluentbytes.carvedrock.main", Label = "CarvedRock", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    // "com.fluentbytes.carvedrock.main"
+
+    [Activity(Name = "com.fluentbytes.carvedrock.MainActivity", Label = "CarvedRock", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)

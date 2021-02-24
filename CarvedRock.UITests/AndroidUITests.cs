@@ -209,7 +209,7 @@ namespace CarvedRock.UITests
                 // Capabilities from jedoxAPP
                 capabilities.AddAdditionalCapability(MobileCapabilityType.BrowserName, "");
                 capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-                capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "10");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "9");
 
 
 
@@ -240,7 +240,7 @@ namespace CarvedRock.UITests
                 // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.fluentbytes.carvedrock");
                 // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
 
-                capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.main");
+                capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.MainActivity");
                 // capabilities.AddAdditionalCapability("appWaitActivity", ".activities.MainActivity");
 
                 // additional wait time in case we have a clean emulator and need to wait for the install
@@ -279,7 +279,17 @@ namespace CarvedRock.UITests
                 // automatic start of the emulator if not running
                 // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "demo_device");
                 //capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
+
+                // Capabilities from jedoxAPP
+                capabilities.AddAdditionalCapability(MobileCapabilityType.BrowserName, "");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
+                capabilities.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "9");
+
+
+
+                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_pixel_2_29");
                 capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "test_emulator");
+                //capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.Avd, "tablet_m-dpi_10_1_pie_9_0_-_api_28");
 
                 capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AvdArgs, "-no-boot-anim -no-snapshot-load");
                 capabilities.AddAdditionalCapability(MobileCapabilityType.FullReset, true);
@@ -296,16 +306,19 @@ namespace CarvedRock.UITests
 
                 //var packagePath = Path.Combine(currentPath, @"/Users/bhashithagamage/Desktop/Projects/PluralSight_Learning/MyExperimentGitRepo/IntegratingAppiumIntoADevOpsPipeLine/CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
                 var packagePath = Path.Combine(currentPath, @"../../../../CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock.apk");
+                //var packagePath = Path.Combine(currentPath, @"../../../../CarvedRock.Android/bin/Debug/com.fluentbytes.carvedrock-Signed.apk");
+
                 packagePath = Path.GetFullPath(packagePath);
                 Console.WriteLine($"Package path: {packagePath}");
 
                 capabilities.AddAdditionalCapability(MobileCapabilityType.App, packagePath);
 
-                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.fluentbytes.carvedrock");
-                // capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
+                //capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "com.fluentbytes.carvedrock");
+                //capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppPackage, "MainActivity");
+                //capabilities.AddAdditionalCapability(AndroidMobileCapabilityType.AppActivity, "crc641782d5af3c9cf50a.MainActivity");
 
-                capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.main");
-                // capabilities.AddAdditionalCapability("appWaitActivity", ".activities.MainActivity");
+                capabilities.AddAdditionalCapability("appActivity", "com.fluentbytes.carvedrock.MainActivity");
+                // capabilities.AddAdditionalCapability("appWaitActivity", "com.fluentbytes.carvedrock.*");
 
                 // additional wait time in case we have a clean emulator and need to wait for the install
                 capabilities.AddAdditionalCapability("appWaitDuration", 4800000);
@@ -320,8 +333,9 @@ namespace CarvedRock.UITests
                 serveroptions.AddArguments(relaxedSecurityOption);
                 //var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
                 var _appiumLocalService = new AppiumServiceBuilder().WithArguments(serveroptions).Build();
-                _appiumLocalService.Start(); ;
-                var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
+               // _appiumLocalService.Start(); ;
+               // var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
+                var driver = new AndroidDriver<AppiumWebElement>(new Uri("http://localhost:4723/wd/hub"), capabilities, TimeSpan.FromMinutes(3));
 
                 return driver;
             }
