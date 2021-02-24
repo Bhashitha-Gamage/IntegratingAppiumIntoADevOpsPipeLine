@@ -249,7 +249,7 @@ namespace CarvedRock.UITests
 
                // _appiumLocalService.Start(); ;
                 // var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
-                var driver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromMinutes(3));
+                var driver = new AndroidDriver<AppiumWebElement>(new Uri("http://localhost:4723/wd/hub"), capabilities, TimeSpan.FromMinutes(3));
                 
                 return driver;
             }
