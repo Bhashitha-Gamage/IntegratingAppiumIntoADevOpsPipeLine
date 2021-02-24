@@ -78,13 +78,13 @@ jobs:
                  # npm install -g appium
                  # npm install -g appium-doctor
                  # appium-doctor --android
-                 dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
-                 - name: Upload Test Results
-                   uses: actions/upload-artifact@v1.0.0
-                   with:
-                      name: published Test Results UI test
-                      path: TestResults        
-                  if: always()
+                 dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll --logger "trx;logfilename=mytests.trx" --results-directory ./TestResults
+                 #- name: Upload Test Results
+                 #  uses: actions/upload-artifact@v1.0.0
+                 #  with:
+                 #     name: published Test Results UI test
+                 #     path: TestResults        
+                 # if: always()
         
     - name: Get AVD List
       run: /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
