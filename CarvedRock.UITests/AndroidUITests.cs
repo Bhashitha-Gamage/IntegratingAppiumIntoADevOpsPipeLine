@@ -13,6 +13,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace CarvedRock.UITests
 {
@@ -57,14 +58,26 @@ namespace CarvedRock.UITests
         {
             AndroidDriver<AppiumWebElement> driver = StartApp();
 
+            // Test by adding wait time
+            Thread.Sleep(10000);
+
             // tap on second item
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
             el1.Click();
 
+            // Test by adding wait time
+            Thread.Sleep(10000);
+
             var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             Assert.IsTrue(el2.Text == "Second item");
 
+            // Test by adding wait time
+            Thread.Sleep(10000);
+
             driver.PressKeyCode(AndroidKeyCode.Back);
+
+            // Test by adding wait time
+            Thread.Sleep(10000);
 
             var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
             Assert.IsTrue(el3 != null);
