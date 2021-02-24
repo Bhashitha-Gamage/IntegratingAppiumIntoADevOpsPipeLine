@@ -58,7 +58,11 @@ jobs:
    # - name: Create AVD
    #   run: /Users/runner/Library/Android/sdk/tools/bin/avdmanager create avd -n test -k "system-images;android-28;google_apis;x86"
     
-
+    - name: Install and Run Appium Server
+      run: |
+            chmod +x ./scripts/RunAppiumServer.sh # install and run appium server in the background
+            ./scripts/RunAppiumServer.sh
+    
     
     - name: Create Emulator
       uses: reactivecircus/android-emulator-runner@v2
@@ -72,9 +76,9 @@ jobs:
                  /Users/runner/Library/Android/sdk/emulator/emulator -list-avds
                  msbuild CarvedRock.Android/CarvedRock.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug /t:SignAndroidPackage
                  msbuild CarvedRock.UITests/CarvedRock.UITests.csproj -property:Configuration=Debug
-                 npm install -g appium
-                 npm install -g appium-doctor
-                 appium-doctor --android
+                 # npm install -g appium
+                 # npm install -g appium-doctor
+                 # appium-doctor --android
                  dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
         
     - name: Get AVD List
