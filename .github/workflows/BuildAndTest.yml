@@ -116,7 +116,7 @@ jobs:
    #   uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
 
     - name: Run UI tests
-      run: dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll
+      run: dotnet test CarvedRock.UITests/bin/Debug/netcoreapp3.1/CarvedRock.UITests.dll --logger "trx;logfilename=mytests.trx"
 
    
   #  - name: Upload Artifact
