@@ -53,29 +53,29 @@ namespace CarvedRock.UITests
         }
 
 
-        [TestMethod]
-        public void CheckMasterDetailAndBack()
-        {
-            AndroidDriver<AppiumWebElement> driver = StartApp();
+        //[TestMethod]
+        //public void CheckMasterDetailAndBack()
+        //{
+        //    AndroidDriver<AppiumWebElement> driver = StartApp();
 
-            // tap on second item
-            var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
-            el1.Click();
+        //    // tap on second item
+        //    var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
+        //    el1.Click();
 
-            // Test
-            Thread.Sleep(4000);
+        //    // Test
+        //    Thread.Sleep(4000);
 
-            var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
-            Assert.IsTrue(el2.Text == "Second item");
+        //    var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
+        //    Assert.IsTrue(el2.Text == "Second item");
 
-            driver.PressKeyCode(AndroidKeyCode.Back);
+        //    driver.PressKeyCode(AndroidKeyCode.Back);
 
-            var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
-            Assert.IsTrue(el3 != null);
+        //    var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
+        //    Assert.IsTrue(el3 != null);
 
-            driver.CloseApp();
+        //    driver.CloseApp();
 
-        }
+        //}
 
         [TestMethod]
         public void AddNewItem()
