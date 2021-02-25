@@ -62,6 +62,9 @@ namespace CarvedRock.UITests
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
             el1.Click();
 
+            // Test
+            Thread.Sleep(4000);
+
             var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             Assert.IsTrue(el2.Text == "Second item");
 
@@ -82,6 +85,9 @@ namespace CarvedRock.UITests
             // tap on second item
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Add"));
             el1.Click();
+
+            // Test
+            Thread.Sleep(4000);
 
             var elItemText = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             elItemText.Clear();
@@ -468,16 +474,31 @@ namespace CarvedRock.UITests
                 // Incresing adbExecTimeout
                 capabilities.AddAdditionalCapability("adbExecTimeout", 4800000);
 
+
+
                 // specify startup flags appium server to execute adb shell commands
                 var serveroptions = new OptionCollector();
                 var relaxedSecurityOption = new KeyValuePair<string, string>("--relaxed-security", "");
 
+                // Working
+                // serveroptions.AddArguments(relaxedSecurityOption);
+                // //var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
+                // var _appiumLocalService = new AppiumServiceBuilder().WithArguments(serveroptions).Build();
+                //// _appiumLocalService.Start(); ;
+                //// var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
+                // var driver = new AndroidDriver<AppiumWebElement>(new Uri("http://localhost:4723/wd/hub"), capabilities, TimeSpan.FromMinutes(3));
+
+                // return driver;
+
+
+
+
+                //// Experimenting restart new session for each test
                 serveroptions.AddArguments(relaxedSecurityOption);
-                //var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
-                var _appiumLocalService = new AppiumServiceBuilder().WithArguments(serveroptions).Build();
-               // _appiumLocalService.Start(); ;
-               // var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
-                var driver = new AndroidDriver<AppiumWebElement>(new Uri("http://localhost:4723/wd/hub"), capabilities, TimeSpan.FromMinutes(3));
+                var _appiumLocalService = new AppiumServiceBuilder().UsingAnyFreePort().WithArguments(serveroptions).Build();
+
+                _appiumLocalService.Start(); ;
+                var driver = new AndroidDriver<AppiumWebElement>(_appiumLocalService, capabilities, TimeSpan.FromMinutes(3));
 
                 return driver;
             }
