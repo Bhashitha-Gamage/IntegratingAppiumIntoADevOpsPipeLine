@@ -58,31 +58,14 @@ namespace CarvedRock.UITests
         {
             AndroidDriver<AppiumWebElement> driver = StartApp();
 
-            // Test by adding wait time
-            //Thread.Sleep(10000);
-            //CreateScreenshot(driver);
-
-
             // tap on second item
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
             el1.Click();
 
-            // Test by adding wait time
-            //Thread.Sleep(10000);
-            //CreateScreenshot(driver);
-
             var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             Assert.IsTrue(el2.Text == "Second item");
 
-            // Test by adding wait time
-            //Thread.Sleep(10000);
-            //CreateScreenshot(driver);
-
             driver.PressKeyCode(AndroidKeyCode.Back);
-
-            // Test by adding wait time
-            //Thread.Sleep(10000);
-            //CreateScreenshot(driver);
 
             var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
             Assert.IsTrue(el3 != null);
@@ -91,33 +74,14 @@ namespace CarvedRock.UITests
 
         }
 
-        //[TestMethod]
-        //public void JustAScreenShot()
-        //{
-        //    AndroidDriver<AppiumWebElement> driver = StartApp();
-
-        //    // Test by adding wait time
-        //    Thread.Sleep(10000);
-
-        //    CreateScreenshot(driver);
-
-        //    driver.CloseApp();
-        //}
-
         [TestMethod]
         public void AddNewItem()
         {
             AndroidDriver<AppiumWebElement> driver = StartApp();
 
-            // Test by adding wait time
-           // Thread.Sleep(10000);
-
             // tap on second item
             var el1 = driver.FindElement(MobileBy.AccessibilityId("Add"));
             el1.Click();
-
-            // Test by adding wait time
-           // Thread.Sleep(10000);
 
             var elItemText = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
             elItemText.Clear();
@@ -156,6 +120,135 @@ namespace CarvedRock.UITests
             driver.CloseApp();
 
         }
+
+
+
+
+
+        // I customised
+        //[TestMethod]
+        //public void TestListInstalledPackages()
+        //{
+        //    AndroidDriver<AppiumWebElement> driver = StartApp();
+        //    //get a list of all installed packages on the device
+        //    string script = "mobile: shell";
+        //    var arguments = new Dictionary<string, string>
+        //    {
+        //        { "command", "pm list packages" },
+        //        { "--show-versioncode", "" }
+        //    };
+
+        //    var list = driver.ExecuteScript(script, arguments);
+        //    Assert.IsNotNull(list);
+        //    Console.Write(list);
+        //}
+
+
+        //[TestMethod]
+        //public void CheckMasterDetailAndBack()
+        //{
+        //    AndroidDriver<AppiumWebElement> driver = StartApp();
+
+        //    // Test by adding wait time
+        //    //Thread.Sleep(10000);
+        //    //CreateScreenshot(driver);
+
+
+        //    // tap on second item
+        //    var el1 = driver.FindElement(MobileBy.AccessibilityId("Second item"));
+        //    el1.Click();
+
+        //    // Test by adding wait time
+        //    //Thread.Sleep(10000);
+        //    //CreateScreenshot(driver);
+
+        //    var el2 = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
+        //    Assert.IsTrue(el2.Text == "Second item");
+
+        //    // Test by adding wait time
+        //    //Thread.Sleep(10000);
+        //    //CreateScreenshot(driver);
+
+        //    driver.PressKeyCode(AndroidKeyCode.Back);
+
+        //    // Test by adding wait time
+        //    //Thread.Sleep(10000);
+        //    //CreateScreenshot(driver);
+
+        //    var el3 = driver.FindElement(MobileBy.AccessibilityId("Fourth item"));
+        //    Assert.IsTrue(el3 != null);
+
+        //    driver.CloseApp();
+
+        //}
+
+        //[TestMethod]
+        //public void AddNewItem()
+        //{
+        //    AndroidDriver<AppiumWebElement> driver = StartApp();
+
+        //    // Test by adding wait time
+        //   // Thread.Sleep(10000);
+
+        //    // tap on second item
+        //    var el1 = driver.FindElement(MobileBy.AccessibilityId("Add"));
+        //    el1.Click();
+
+        //    // Test by adding wait time
+        //   // Thread.Sleep(10000);
+
+        //    var elItemText = driver.FindElement(MobileBy.AccessibilityId("ItemText"));
+        //    elItemText.Clear();
+        //    elItemText.SendKeys("This is a new Item");
+
+        //    var elItemDetail = driver.FindElement(MobileBy.AccessibilityId("ItemDescription"));
+        //    elItemDetail.Clear();
+        //    elItemDetail.SendKeys("These are the details");
+
+        //    var elSave = driver.FindElement(MobileBy.AccessibilityId("Save"));
+        //    elSave.Click();
+        //    CreateScreenshot(driver);
+
+        //    WaitForProgressbarToDisapear(driver);
+
+        //    CreateScreenshot(driver);
+
+        //    var scrollableElement = driver.FindElement(MobileBy.AccessibilityId("ItemsListView"));
+
+        //    Func<AppiumWebElement> FindElementAction = () =>
+        //    {
+        //        // find all text views
+        //        // check if the text matches
+        //        var elements = driver.FindElementsByClassName("android.widget.TextView");
+        //        foreach (var textView in elements)
+        //        {
+        //            if (textView.Text == "This is a new Item")
+        //                return textView;
+        //        }
+        //        return null;
+        //    };
+
+        //    var elementFound = ScrollUntillItemFound(driver, scrollableElement, FindElementAction, 4);
+
+        //    Assert.IsTrue(elementFound != null);
+        //    driver.CloseApp();
+
+        //}
+
+
+        //[TestMethod]
+        //public void JustAScreenShot()
+        //{
+        //    AndroidDriver<AppiumWebElement> driver = StartApp();
+
+        //    // Test by adding wait time
+        //    Thread.Sleep(10000);
+
+        //    CreateScreenshot(driver);
+
+        //    driver.CloseApp();
+        //}
+
 
 
         private void WaitForProgressbarToDisapear(AndroidDriver<AppiumWebElement> driver)
